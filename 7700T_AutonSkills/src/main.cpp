@@ -354,7 +354,7 @@ mogoUnclamp();
 // push right side mobile goal into corner
 PinchDrive(11.5);
 GyroTurn(85);
-PinchDrive(108);
+PinchDrive(115);
 
 // old one
 // // first corner
