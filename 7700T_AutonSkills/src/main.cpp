@@ -347,7 +347,7 @@ PinchDrive(-5);
 GyroTurn(120);
 time_drive(-50, -50, 500);
 wait(250, msec);
-//collect two rings fqrom L
+//collect two rings from L
 mogoUnclamp();
 //put in corner
 
@@ -356,11 +356,11 @@ wait(100,msec);
 PinchDrive(8.0);
 GyroTurn(-122); //-125
 intake.spin(fwd, 0, pct);
-time_drive(60, 60, 700);
+time_drive(60, 60, 750);
 intake.spin(fwd, 100, pct);
 //get ready to go to clamp second mogo
 PinchDrive(-5);
-GyroTurn(-1.75);
+GyroTurn(-0.9);
 PinchDrive(-90); // PinchDrive or PinchDrive2
 mogoClamp();
 //clamp onto second mogo
@@ -382,17 +382,36 @@ PinchDrive(-3);
 //collect second L
 GyroTurn(-130);
 time_drive(-60, -60, 550);
-wait(500, msec);
-mogoUnclamp();                           
+wait(500, msec);                         
 wait(250, msec);
+GyroTurn(2.5);
 //go into corner
 
 // 3rd corner
+
+// getting 3rd ring
+time_drive(-50, -50, 500);
+GyroTurn(6); 
+PinchDrive(10);
+// GyroTurn(5);
+PinchDrive(20);
+GyroTurn(-10);
+PinchDrive(-10);
+GyroTurn(-10);
+time_drive(-50, -50, 500);
+mogoUnclamp();
+//
+
 PinchDrive(12);
 GyroTurn(10); 
 PinchDrive(10);
 GyroTurn(10);
 PinchDrive(20);
+// go to other half
+PinchDrive(30);
+GyroTurn(-35);
+PinchDrive(15);
+GyroTurn(160);
 /*GyroTurn(90);
 PinchDrive(40); */
 
