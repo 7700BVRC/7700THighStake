@@ -406,14 +406,27 @@ void autonomous(void) {
   mogoUnclamp();
   PinchDrive(-30);
   mogoClamp();
-  wait(250, msec);
+  // wait(250, msec);
+  intake.spin(fwd, 75, pct);
+  conveyorBelt.spin(fwd, 75, pct);
+  // wait(1.5, sec);
+  wait(100, msec);
+  GyroTurn(97);
   intake.spin(fwd, 100, pct);
   conveyorBelt.spin(fwd, 100, pct);
-  wait(1.5, sec);
-  GyroTurn(87);
-  wait(300, msec);
+  // wait(300, msec);
+  // 2nd ring
   PinchDrive(24);
-  intake.stop(brake);
+  GyroTurn(86);
+  // 3rd ring
+  PinchDrive(19);
+  // wait(250, msec);
+  PinchDrive(-5);
+  GyroTurn(15);
+  PinchDrive(-11.5);
+  GyroTurn(-30);
+  PinchDrive(17);
+  /*intake.stop(brake);
   wait(300,msec);
   GyroTurn(168);
   PinchDrive(40);
@@ -434,7 +447,7 @@ void autonomous(void) {
 /*
   intake.stop(brake);
   conveyorBelt.stop(brake);*/
-  wait(300, msec);
+  /*wait(300, msec);
    GyroTurn(172.5);
    PinchDrive(43);
   conveyorBelt.spin(fwd, 100, pct);
