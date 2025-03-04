@@ -91,58 +91,6 @@ void selectAuton() {
 		Brain.Screen.setFillColor(black);
 }
 
-// Auton Selector (GUI)
-/*int AutonSelected = 0;
-int AutonMin = 0;
-int AutonMax = 1;
-
-void drawGUI(){
-	// Draws 2 buttons to be used for selecting auto
-	Brain.Screen.clearScreen();
-	Brain.Screen.printAt(1, 40, "Select Auton then Press Go");
-	Brain.Screen.printAt(1, 200, "Auton Selected =  %d   ", AutonSelected);
-	Brain.Screen.setFillColor(red);
-	Brain.Screen.drawRectangle(20, 50, 100, 100);
-	Brain.Screen.drawCircle(300, 75, 25);
-	Brain.Screen.printAt(25, 75, "Select");
-	Brain.Screen.setFillColor(green);
-	Brain.Screen.drawRectangle(170, 50, 100, 100);
-	Brain.Screen.printAt(175, 75, "GO");
-	Brain.Screen.setFillColor(black);
-}
-
-void selectAuton() {
-		bool selectingAuton = true;
-		
-		int x = Brain.Screen.xPosition(); // get the x position of last touch of the screen
-		int y = Brain.Screen.yPosition(); // get the y position of last touch of the screen
-		
-		// check to see if buttons were pressed
-		if (x >= 20 && x <= 120 && y >= 50 && y <= 150){ // select button pressed
-      AutonSelected++;
-      if (AutonSelected > AutonMax){
-        AutonSelected = AutonMin; // rollover
-      }
-      Brain.Screen.printAt(1, 200, "Auton Selected =  %d   ", AutonSelected);
-		}
-		
-		
-		if (x >= 170 && x <= 270 && y >= 50 && y <= 150) {
-				selectingAuton = false; // GO button pressed
-				Brain.Screen.printAt(1, 200, "Auton  =  %d   GO           ", AutonSelected);
-		}
-		
-		if (!selectingAuton) {
-				Brain.Screen.setFillColor(green);
-				Brain.Screen.drawCircle(300, 75, 25);
-		} else {
-				Brain.Screen.setFillColor(red);
-				Brain.Screen.drawCircle(300, 75, 25);
-		}
-		
-		wait(10, msec); // slow it down
-		Brain.Screen.setFillColor(black);
-}*/
 
 void stopDrive(){
   LB.stop(brake);
@@ -261,7 +209,7 @@ void PinchDrive(float target){
   LM.setPosition(0, rev);
   float x = pi*LM.position(rev)*gr*Dia;
   float error = target - x;
-  float kp = 3.0;
+  float kp = 6.3;
   float speed = kp*error;
   float accuracy = 0.5;
   while(fabs(error) > accuracy){
@@ -368,6 +316,8 @@ void pre_auton(void) {
 Gyro1.calibrate();
 rotation1.resetPosition();
 Brain.Screen.pressed(selectAuton);
+drawGUI(); 
+
 // rotation1.setPosition(0, deg);
   // All activities that occur before the competition starts
   // Example: clearing encoders, setting servo positions, ...
@@ -390,6 +340,43 @@ Brain.Screen.pressed(selectAuton);
 void autonomous(void) {   
   // ..........................................................................
 
+switch (AutonSelected){
+
+  case 0:
+  // left side
+    mogoUnclamp();
+    PinchDrive(-25.0);
+    PinchDrive(-4.5);
+    mogoClamp();
+    wait(100, msec);
+    // wait(250, msec);
+    intake.spin(fwd, 75, pct);
+    conveyorBelt.spin(fwd, 75, pct);
+    // wait(1.5, sec);
+    // wait(100, msec);
+    GyroTurn(97);
+    intake.spin(fwd, 100, pct);
+    conveyorBelt.spin(fwd, 100, pct);
+    // wait(300, msec);
+    // 2nd ring
+    PinchDrive(24);
+    GyroTurn(86);
+    // 3rd ring
+    PinchDrive(19);
+    // wait(250, msec);
+    PinchDrive(-5);
+    GyroTurn(15);
+    PinchDrive(-11.5);
+    GyroTurn(-28);
+    PinchDrive(15);
+  break; 
+
+
+case 1: 
+  PinchDrive(30);
+  break; 
+
+}
 
 // PinchDrive(-39.2);
 // GyroTurn(-40);
@@ -403,29 +390,29 @@ void autonomous(void) {
 
 
 
-  mogoUnclamp();
-  PinchDrive(-30);
-  mogoClamp();
-  // wait(250, msec);
-  intake.spin(fwd, 75, pct);
-  conveyorBelt.spin(fwd, 75, pct);
-  // wait(1.5, sec);
-  wait(100, msec);
-  GyroTurn(97);
-  intake.spin(fwd, 100, pct);
-  conveyorBelt.spin(fwd, 100, pct);
-  // wait(300, msec);
-  // 2nd ring
-  PinchDrive(24);
-  GyroTurn(86);
-  // 3rd ring
-  PinchDrive(19);
-  // wait(250, msec);
-  PinchDrive(-5);
-  GyroTurn(15);
-  PinchDrive(-11.5);
-  GyroTurn(-30);
-  PinchDrive(17);
+  // mogoUnclamp();
+  // PinchDrive(-29.5);
+  // mogoClamp();
+  // // wait(250, msec);
+  // intake.spin(fwd, 75, pct);
+  // conveyorBelt.spin(fwd, 75, pct);
+  // // wait(1.5, sec);
+  // wait(100, msec);
+  // GyroTurn(97);
+  // intake.spin(fwd, 100, pct);
+  // conveyorBelt.spin(fwd, 100, pct);
+  // // wait(300, msec);
+  // // 2nd ring
+  // PinchDrive(24);
+  // GyroTurn(86);
+  // // 3rd ring
+  // PinchDrive(19);
+  // // wait(250, msec);
+  // PinchDrive(-5);
+  // GyroTurn(15);
+  // PinchDrive(-11.5);
+  // GyroTurn(-28);
+  // PinchDrive(15);
   /*intake.stop(brake);
   wait(300,msec);
   GyroTurn(168);
