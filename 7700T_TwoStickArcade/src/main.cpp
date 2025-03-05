@@ -209,7 +209,7 @@ void PinchDrive(float target){
   LM.setPosition(0, rev);
   float x = pi*LM.position(rev)*gr*Dia;
   float error = target - x;
-  float kp = 3.0;
+  float kp = 6.3;
   float speed = kp*error;
   float accuracy = 0.5;
   while(fabs(error) > accuracy){
@@ -323,35 +323,66 @@ void autonomous(void) {
   switch (AutonSelected) {
     case 0:
       //code 0 - left side passive
-      mogoUnclamp();
-      PinchDrive(-32);
-      mogoClamp();
-      wait(250, msec);
-      intake.spin(fwd, 100, pct);
-      conveyorBelt.spin(fwd, 100, pct);
-      wait(1.5, sec);
-      GyroTurn(100);
-      wait(300, msec);
-      PinchDrive(23.5);
-      intake.stop(brake);
-      GyroTurn(162.5);
-      PinchDrive(43);
+      // mogoUnclamp();
+      // PinchDrive(-32);
+      // mogoClamp();
+      // wait(250, msec);
+      // intake.spin(fwd, 100, pct);
+      // conveyorBelt.spin(fwd, 100, pct);
+      // wait(1.5, sec);
+      // GyroTurn(100);
+      // wait(300, msec);
+      // PinchDrive(23.5);
+      // intake.stop(brake);
+      // GyroTurn(162.5);
+      // PinchDrive(43);
+    mogoUnclamp();
+    PinchDrive(-25.0);
+    PinchDrive(-4.5);
+    mogoClamp();
+    wait(100, msec);
+    // wait(250, msec);
+    intake.spin(fwd, 75, pct);
+    conveyorBelt.spin(fwd, 75, pct);
+    // wait(1.5, sec);
+    // wait(100, msec);
+    GyroTurn(97);
+    intake.spin(fwd, 100, pct);
+    conveyorBelt.spin(fwd, 100, pct);
+    // wait(300, msec);
+    // 2nd ring
+    PinchDrive(26);
+    GyroTurn(83);
+    // 3rd ring
+    PinchDrive(19.5);
+    // wait(250, msec);
+    PinchDrive(-5);
+    GyroTurn(15);
+    PinchDrive(-10);
+    GyroTurn(-24.5);
+    PinchDrive(16);
+    // touch bar
+    PinchDrive(-15);
+    GyroTurn(83);
+    PinchDrive(42);
       break;
 				
     case 1:
       //code 2 - right side passive  mogoUnclamp();
-      mogoUnclamp();
-      PinchDrive(-30);
-      mogoClamp();
-      wait(250, msec);
-      intake.spin(fwd, 100, pct);
-      conveyorBelt.spin(fwd, 100, pct);
-      wait(1.5, sec);
-      GyroTurn(-100);
-      wait(300, msec);
-      PinchDrive(23.5);
-      GyroTurn(172.5);
-      PinchDrive(43);
+  mogoUnclamp();
+  PinchDrive(-27);
+  mogoClamp();
+  wait(250, msec);
+  intake.spin(fwd, 100, pct);
+  conveyorBelt.spin(fwd, 100, pct);
+  wait(1.5, sec);
+  GyroTurn(-75);
+  wait(300, msec);
+  PinchDrive(24);
+  intake.stop(brake);
+  wait(300,msec);
+  GyroTurn(130);
+  PinchDrive(40);
       break;
 			
   }

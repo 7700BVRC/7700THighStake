@@ -359,21 +359,40 @@ switch (AutonSelected){
     conveyorBelt.spin(fwd, 100, pct);
     // wait(300, msec);
     // 2nd ring
-    PinchDrive(24);
-    GyroTurn(86);
+    PinchDrive(26);
+    GyroTurn(83);
     // 3rd ring
-    PinchDrive(19);
+    PinchDrive(19.5);
     // wait(250, msec);
     PinchDrive(-5);
     GyroTurn(15);
-    PinchDrive(-11.5);
-    GyroTurn(-28);
-    PinchDrive(15);
+    PinchDrive(-10);
+    GyroTurn(-24.5);
+    PinchDrive(16);
+    // touch bar
+    PinchDrive(-15);
+    GyroTurn(83);
+    PinchDrive(42);
   break; 
 
-
-case 1: 
-  PinchDrive(30);
+case 1:
+  // tune because of the new kp in pinchdrive
+  mogoUnclamp();
+  PinchDrive(-30);
+  mogoClamp();
+  wait(250, msec);
+  intake.spin(fwd, 100, pct);
+  conveyorBelt.spin(fwd, 100, pct);
+  wait(1.5, sec);
+  GyroTurn(-100);
+  wait(600, msec);
+  PinchDrive(23.5);
+  intake.stop(brake);
+  conveyorBelt.stop(brake);
+  wait(450, msec);
+  GyroTurn(172.5);
+  PinchDrive(43);
+  conveyorBelt.spin(fwd, 100, pct);
   break; 
 
 }
