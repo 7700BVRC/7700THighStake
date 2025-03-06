@@ -38,8 +38,8 @@ int currentIndex = 0;
 /*---------------------------------------------------------------------------*/
 /*                          Pre-Autonomous Functions                         */
 
-// Auton Selector (GUI)                                 QTR
-int AutonSelected = 0;
+// Auton Selector (GUI)                                 
+int AutonSelected = 1;
 int AutonMin = 0;
 int AutonMax = 1;
 
@@ -352,7 +352,7 @@ void autonomous(void) {
     // wait(300, msec);
     // 2nd ring
     PinchDrive(26);
-    GyroTurn(83);
+    GyroTurn(79);
     // 3rd ring
     PinchDrive(19.5);
     // wait(250, msec);
@@ -360,7 +360,7 @@ void autonomous(void) {
     GyroTurn(15);
     PinchDrive(-10);
     GyroTurn(-24.5);
-    PinchDrive(16);
+    PinchDrive(14.75);
     // touch bar
     PinchDrive(-15);
     GyroTurn(83);
@@ -369,23 +369,37 @@ void autonomous(void) {
 				
     case 1:
       //code 2 - right side passive  mogoUnclamp();
+    // alliance stake
   mogoUnclamp();
-  PinchDrive(-27);
-  mogoClamp();
+  PinchDrive(13.25);
+  wait(200, msec);
+  GyroTurn(-87);
+  wait(300, msec);
+  time_drive(11, 11, 500);
   wait(250, msec);
+  armRotationControl(134.75);
+  wait(250, msec);
+  armRotationControl(0);
+  /*
+  PinchDrive(-25);
+  PinchDrive(-4.5);
+  mogoClamp();
+  wait(100, msec);
   intake.spin(fwd, 100, pct);
   conveyorBelt.spin(fwd, 100, pct);
-  wait(1.5, sec);
-  GyroTurn(-75);
-  wait(300, msec);
-  PinchDrive(24);
-  intake.stop(brake);
-  wait(300,msec);
-  GyroTurn(130);
-  PinchDrive(40);
+  // wait(1.5, sec);
+  GyroTurn(-97);
+  // wait(300, msec);
+  PinchDrive(26);
+  // intake.stop(brake);
+  wait(100,msec);
+  GyroTurn(83);
+  PinchDrive(17);
+  // GyroTurn(130);
+  // PinchDrive(40);*/
       break;
 			
-  }
+  }                                                                                                          
 }
 
   // ..........................................................................

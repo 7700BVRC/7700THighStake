@@ -39,7 +39,7 @@ int currentIndex = 0;
 /*                          Pre-Autonomous Functions                         */
 
 // Auton Selector (GUI)
-int AutonSelected = 0;
+int AutonSelected = 1;
 int AutonMin = 0;
 int AutonMax = 4;
 
