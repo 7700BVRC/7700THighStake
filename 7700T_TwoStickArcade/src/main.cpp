@@ -39,9 +39,9 @@ int currentIndex = 0;
 /*                          Pre-Autonomous Functions                         */
 
 // Auton Selector (GUI)                                 
-int AutonSelected = 1;
+int AutonSelected = 3;
 int AutonMin = 0;
-int AutonMax = 1;
+int AutonMax = 3;
 
 void drawGUI(){
 	// Draws 2 buttons to be used for selecting auto
@@ -231,7 +231,7 @@ void GyroTurn(float target){
   while(fabs(error) >= accuracy){
     speed = kp*error;
     time_drive(speed, -speed, 10);
-    theta = Gyro1.rotation();
+    theta = Gyro1.rotation(deg);
     error = target - theta;
   }
   stopDrive();
@@ -381,8 +381,8 @@ void autonomous(void) {
   armRotationControl(134.75);
   wait(250, msec);
   armRotationControl(0);
-  /*
-  PinchDrive(-25);
+  
+  /*PinchDrive(-25);
   PinchDrive(-4.5);
   mogoClamp();
   wait(100, msec);
@@ -395,12 +395,59 @@ void autonomous(void) {
   // intake.stop(brake);
   wait(100,msec);
   GyroTurn(83);
-  PinchDrive(17);
+  PinchDrive(17);*/
   // GyroTurn(130);
-  // PinchDrive(40);*/
+  // PinchDrive(40);
       break;
-			
-  }                                                                                                          
+
+  case 2:
+    mogoUnclamp();
+    PinchDrive(-25.0);
+    PinchDrive(-4.5);
+    mogoClamp();
+    // wait(250, msec);
+    intake.spin(fwd, 75, pct);
+    conveyorBelt.spin(fwd, 75, pct);
+    wait(250, msec);
+    // wait(1.5, sec);
+    // wait(100, msec);
+    GyroTurn(-110);
+    PinchDrive(26);
+    //
+    intake.spin(fwd, 100, pct);
+    conveyorBelt.spin(fwd, 100, pct);
+    wait(100, msec);
+    // wait(300, msec);
+    // 2nd ring
+    GyroTurn(-46.75);
+    // 3rd ring
+    PinchDrive(12.75);
+    wait(250, msec);
+    PinchDrive(-5);
+    GyroTurn(-15);
+    PinchDrive(-10);
+    GyroTurn(-11);
+    PinchDrive(13);
+    wait(250, msec);
+    // touch bar
+    PinchDrive(-15);
+    GyroTurn(-57.5);
+    PinchDrive(42);
+		
+  case 3:
+  mogoUnclamp();
+  PinchDrive(13.25);
+  wait(200, msec);
+  GyroTurn(87);
+  wait(300, msec);
+  time_drive(11, 11, 500);
+  wait(250, msec);
+  armRotationControl(134.75);
+  wait(250, msec);
+  armRotationControl(0);
+  GyroTurn(-37.5);
+  PinchDrive(-35);
+  }                                                                                                  
 }
 
   // ..........................................................................
@@ -408,7 +455,7 @@ void autonomous(void) {
 /*---------------------------------------------------------------------------*/
 /*                                                                           */
 /*                              User Control Task                            */
-/*                                                                           */
+/*                                                                          */
 /*  This task is used to control your robot during the user control phase of */
 /*  a VEX Competition.                                                       */
 /*                                                                           */
