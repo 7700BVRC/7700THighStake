@@ -39,7 +39,7 @@ int currentIndex = 0;
 /*                          Pre-Autonomous Functions                         */
 
 // Auton Selector (GUI)                                 
-int AutonSelected = 3;
+int AutonSelected = 1;
 int AutonMin = 0;
 int AutonMax = 3;
 
@@ -337,6 +337,7 @@ void autonomous(void) {
       // GyroTurn(162.5);
       // PinchDrive(43);
       //
+    // four ring auton positive
     mogoUnclamp();
     PinchDrive(-25.0);
     PinchDrive(-4.5);
@@ -370,17 +371,32 @@ void autonomous(void) {
 				
     case 1:
       //code 2 - right side passive  mogoUnclamp();
-    // alliance stake
+  // alliance stake negative
   mogoUnclamp();
-  PinchDrive(13.25);
+  PinchDrive(18.25); // 13.25
+  PinchDrive(-5.25);
   wait(200, msec);
   GyroTurn(-87);
   wait(300, msec);
-  time_drive(11, 11, 500);
+  time_drive(11, 11, 75);
   wait(250, msec);
   armRotationControl(134.75);
-  wait(250, msec);
+  wait(100, msec);
   armRotationControl(0);
+  PinchDrive(-5);
+  GyroTurn(5);
+  PinchDrive(-3);
+  GyroTurn(31); 
+  PinchDrive(-35);
+  // wait(100, msec);
+  PinchDrive(-8);
+  mogoClamp();
+  GyroTurn(-110.5);
+  intake.spin(fwd, 100, pct);
+  conveyorBelt.spin(fwd, 100, pct);
+  PinchDrive(27.5);
+  GyroTurn(-187.5);
+  PinchDrive(50);
   
   /*PinchDrive(-25);
   PinchDrive(-4.5);
@@ -401,6 +417,7 @@ void autonomous(void) {
       break;
 
   case 2:
+  // four ring auton negative
     mogoUnclamp();
     PinchDrive(-25.0);
     PinchDrive(-4.5);
@@ -435,18 +452,28 @@ void autonomous(void) {
     PinchDrive(42);
 		
   case 3:
+  // alliance stake positive
   mogoUnclamp();
   PinchDrive(13.25);
   wait(200, msec);
   GyroTurn(87);
   wait(300, msec);
-  time_drive(11, 11, 500);
+  time_drive(11, 11, 75);
   wait(250, msec);
   armRotationControl(134.75);
-  wait(250, msec);
+  wait(100, msec);
   armRotationControl(0);
-  GyroTurn(-37.5);
+  GyroTurn(-36);
   PinchDrive(-35);
+  wait(100, msec);
+  PinchDrive(-5);
+  mogoClamp();
+  GyroTurn(110);
+  intake.spin(fwd, 100, pct);
+  conveyorBelt.spin(fwd, 100, pct);
+  PinchDrive(27.5);
+  GyroTurn(171);
+  PinchDrive(50);
   }                                                                                                  
 }
 
