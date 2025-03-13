@@ -39,7 +39,7 @@ int currentIndex = 0;
 /*                          Pre-Autonomous Functions                         */
 
 // Auton Selector (GUI)                                 
-int AutonSelected = 1;
+int AutonSelected = 0;
 int AutonMin = 0;
 int AutonMax = 3;
 
@@ -337,7 +337,7 @@ void autonomous(void) {
       // GyroTurn(162.5);
       // PinchDrive(43);
       //
-    // four ring auton positive
+    // four ring auton red
     mogoUnclamp();
     PinchDrive(-25.0);
     PinchDrive(-4.5);
@@ -348,30 +348,31 @@ void autonomous(void) {
     conveyorBelt.spin(fwd, 75, pct);
     // wait(1.5, sec);
     // wait(100, msec);
-    GyroTurn(97);
+    GyroTurn(95);
     intake.spin(fwd, 100, pct);
     conveyorBelt.spin(fwd, 100, pct);
     // wait(300, msec);
     // 2nd ring
     PinchDrive(26);
-    GyroTurn(79);
+    PinchDrive(4);
+    GyroTurn(100); //75
     // 3rd ring
     PinchDrive(19.5);
     // wait(250, msec);
     PinchDrive(-5);
-    GyroTurn(15);
+    GyroTurn(20); //15
     PinchDrive(-10);
     GyroTurn(-24.5);
     PinchDrive(14.75);
     // touch bar
     PinchDrive(-15);
-    GyroTurn(83);
+    GyroTurn(70);
     PinchDrive(42);
       break;
 				
     case 1:
       //code 2 - right side passive  mogoUnclamp();
-  // alliance stake negative
+  // alliance stake red
   mogoUnclamp();
   PinchDrive(18.25); // 13.25
   PinchDrive(-5.25);
@@ -397,7 +398,30 @@ void autonomous(void) {
   PinchDrive(27.5);
   GyroTurn(-187.5);
   PinchDrive(50);
-  
+
+  /*  mogoUnclamp();
+  PinchDrive(13.25);
+  wait(200, msec);
+  GyroTurn(-87);
+  wait(300, msec);
+  time_drive(11, 11, 525);
+  wait(250, msec);
+  armRotationControl(134.75);
+  wait(250, msec);
+  armRotationControl(0);
+  PinchDrive(-8);
+  GyroTurn(46.5);
+  PinchDrive(-29.5);
+  PinchDrive(-7);
+  wait(250, msec);
+  mogoClamp();
+  GyroTurn(-126); 
+  intake.spin(fwd, 100, pct);
+  conveyorBelt.spin(fwd, 100, pct);
+  PinchDrive(20);
+  GyroTurn(174.796);
+  PinchDrive(43); */
+
   /*PinchDrive(-25);
   PinchDrive(-4.5);
   mogoClamp();
@@ -417,7 +441,7 @@ void autonomous(void) {
       break;
 
   case 2:
-  // four ring auton negative
+  // four ring auton blue
     mogoUnclamp();
     PinchDrive(-25.0);
     PinchDrive(-4.5);
@@ -436,33 +460,34 @@ void autonomous(void) {
     wait(100, msec);
     // wait(300, msec);
     // 2nd ring
-    GyroTurn(-46.75);
+    GyroTurn(-57.5); //-46.75
     // 3rd ring
-    PinchDrive(12.75);
+    PinchDrive(14); //12.75
     wait(250, msec);
     PinchDrive(-5);
     GyroTurn(-15);
-    PinchDrive(-10);
+    PinchDrive(-10); //10
     GyroTurn(-11);
-    PinchDrive(13);
+    PinchDrive(15);
     wait(250, msec);
     // touch bar
     PinchDrive(-15);
-    GyroTurn(-57.5);
+    GyroTurn(-76);
     PinchDrive(42);
+    break;
 		
   case 3:
-  // alliance stake positive
+  // alliance stake blue
   mogoUnclamp();
   PinchDrive(13.25);
   wait(200, msec);
-  GyroTurn(87);
+  GyroTurn(87); 
   wait(300, msec);
   time_drive(11, 11, 75);
   wait(250, msec);
   armRotationControl(134.75);
   wait(100, msec);
-  armRotationControl(0);
+  armRotationControl(5);
   GyroTurn(-36);
   PinchDrive(-35);
   wait(100, msec);
@@ -474,6 +499,8 @@ void autonomous(void) {
   PinchDrive(27.5);
   GyroTurn(171);
   PinchDrive(50);
+  armRotationControl(0);
+  break;
   }                                                                                                  
 }
 
